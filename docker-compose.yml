@@ -15,22 +15,22 @@ services:
 
   gateway-nginx:
     image: nginx:latest
-    container_name: gateway-nginx
+    container_name: gate-nginx
     ports:
       - "8000:80"
     volumes:
-      - ./gateway:/var/www
-      - ./gateway/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./gate:/var/www
+      - ./gate/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - gateway
 
   gateway:
-    build: ./gateway
-    container_name: gateway
+    build: gate
+    container_name: gate
     restart: unless-stopped
     working_dir: /var/www
     volumes:
-      - ./gateway:/var/www
+      - ./gate:/var/www
     depends_on:
       - db
 

@@ -1,0 +1,15 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+login_check_proxy:
+    path: /api/auth/login
+    controller: App\Controller\AuthProxyController::loginCheck
+    methods: [POST]
+
+register_proxy:
+    path: /api/auth/register
+    controller: App\Controller\AuthProxyController::register
+    methods: [POST]
