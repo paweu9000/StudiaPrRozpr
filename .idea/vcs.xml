@@ -3,9 +3,9 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/auth" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/crud" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/gateway" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/logs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/auth" vcs="" />
+    <mapping directory="$PROJECT_DIR$/crud" vcs="" />
+    <mapping directory="$PROJECT_DIR$/gateway" vcs="" />
+    <mapping directory="$PROJECT_DIR$/logs" vcs="" />
   </component>
 </project>
