@@ -13,3 +13,28 @@ register_proxy:
     path: /api/auth/register
     controller: App\Controller\AuthProxyController::register
     methods: [POST]
+
+item_list:
+    path: /api/items
+    controller: App\Controller\ItemsProxyController::list
+    methods: [GET]
+
+item_show:
+    path: /api/items/{id}
+    controller: App\Controller\ItemsProxyController::show
+    methods: [GET]
+
+item_create:
+    path: /api/items
+    controller: App\Controller\ItemsProxyController::create
+    methods: [POST]
+
+item_update:
+    path: /api/items/{id}
+    controller: App\Controller\ItemsProxyController::update
+    methods: [PUT, PATCH]
+
+item_delete:
+    path: /api/items/{id}
+    controller: App\Controller\ItemsProxyController::delete
+    methods: [DELETE]

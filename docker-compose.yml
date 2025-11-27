@@ -12,6 +12,8 @@ services:
       MYSQL_DATABASE: ${DB_HOST}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
 
   gateway-nginx:
     image: nginx:latest
@@ -53,3 +55,25 @@ services:
     working_dir: /var/www
     volumes:
       - ./authentication:/var/www
+
+  items-nginx:
+    image: nginx:latest
+    container_name: items-nginx
+    ports:
+      - "8002:80"
+    volumes:
+      - ./items:/var/www
+      - ./items/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - items
+
+  items:
+    build: ./items
+    container_name: items
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./items:/var/www
+
+volumes:
+  db_data:
