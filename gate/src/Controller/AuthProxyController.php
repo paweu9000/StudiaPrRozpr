@@ -48,7 +48,7 @@ final class AuthProxyController extends AbstractController
      */
     private function proxyPost(Request $request, string $endpoint): JsonResponse
     {
-        $authUrl = $_ENV['AUTH_SERVICE_URL'] . $endpoint;
+        $authUrl = rtrim($_ENV['AUTH_SERVICE_URL'], '/') . '/' . ltrim($endpoint, '/');
 
         $response = $this->httpClient->request('POST', $authUrl, [
             'json' => json_decode($request->getContent(), true),

@@ -33,6 +33,7 @@ services:
       - ./gate:/var/www
     depends_on:
       - db
+      - auth-nginx
 
   auth-nginx:
     image: nginx:latest
@@ -52,5 +53,3 @@ services:
     working_dir: /var/www
     volumes:
       - ./authentication:/var/www
-    depends_on:
-      - gateway
