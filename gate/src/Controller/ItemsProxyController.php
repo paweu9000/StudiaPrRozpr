@@ -17,14 +17,14 @@ final class ItemsProxyController extends AbstractController
         private readonly HttpClientInterface $httpClient,
     ) {}
 
-    public function list(): JsonResponse
+    public function list(Request $request): JsonResponse
     {
-        return $this->proxyGet('/api/items');
+        return $this->proxyGet($request, '/api/items');
     }
 
-    public function show(int $id): JsonResponse
+    public function show(Request $request, int $id): JsonResponse
     {
-        return $this->proxyGet("/api/items/$id");
+        return $this->proxyGet($request, "/api/items/$id");
     }
 
     public function create(Request $request): JsonResponse
@@ -42,10 +42,14 @@ final class ItemsProxyController extends AbstractController
         return $this->proxyDelete("/api/items/$id");
     }
 
-    private function proxyGet(string $endpoint): JsonResponse
+    private function proxyGet(Request $request, string $endpoint): JsonResponse
     {
         $url = rtrim($_ENV['ITEM_SERVICE_URL'], '/') . '/' . ltrim($endpoint, '/');
-        $response = $this->httpClient->request('GET', $url);
+        $response = $this->httpClient->request('GET', $url, [
+                'headers' => [
+                    'Authorization' => $request->headers->get('Authorization')
+                ]
+            ]);
 
         return new JsonResponse(
             json_decode($response->getContent(false), true),
@@ -58,7 +62,10 @@ final class ItemsProxyController extends AbstractController
         $url = rtrim($_ENV['ITEM_SERVICE_URL'], '/') . '/' . ltrim($endpoint, '/');
         $response = $this->httpClient->request('POST', $url, [
             'json' => json_decode($request->getContent(), true),
-            'headers' => ['Content-Type' => 'application/json']
+            'headers' => [
+                'Authorization' => $request->headers->get('Authorization'),
+                'Content-Type' => 'application/json'
+            ]
         ]);
 
         return new JsonResponse(
@@ -72,7 +79,10 @@ final class ItemsProxyController extends AbstractController
         $url = rtrim($_ENV['ITEM_SERVICE_URL'], '/') . '/' . ltrim($endpoint, '/');
         $response = $this->httpClient->request('PUT', $url, [
             'json' => json_decode($request->getContent(), true),
-            'headers' => ['Content-Type' => 'application/json']
+            'headers' => [
+                'Authorization' => $request->headers->get('Authorization'),
+                'Content-Type' => 'application/json'
+            ]
         ]);
 
         return new JsonResponse(

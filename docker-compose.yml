@@ -75,5 +75,24 @@ services:
     volumes:
       - ./items:/var/www
 
+  logs-nginx:
+    image: nginx:latest
+    container_name: logs-nginx
+    ports:
+      - "8003:80"
+    volumes:
+      - ./logging:/var/www
+      - ./logging/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - logs
+
+  logs:
+    build: ./logging
+    container_name: logs
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./logging:/var/www
+
 volumes:
   db_data:
