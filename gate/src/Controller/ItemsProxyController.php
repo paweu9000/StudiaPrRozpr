@@ -19,26 +19,31 @@ final class ItemsProxyController extends AbstractController
 
     public function list(Request $request): JsonResponse
     {
+        $this->log('READ', '/api/items');
         return $this->proxyGet($request, '/api/items');
     }
 
     public function show(Request $request, int $id): JsonResponse
     {
+        $this->log('READ', "/api/items/$id");
         return $this->proxyGet($request, "/api/items/$id");
     }
 
     public function create(Request $request): JsonResponse
     {
+        $this->log('CREATE', '/api/items');
         return $this->proxyPost($request, '/api/items');
     }
 
     public function update(int $id, Request $request): JsonResponse
     {
+        $this->log('UPDATE', "/api/items/$id");
         return $this->proxyPut($request, "/api/items/$id");
     }
 
     public function delete(int $id): JsonResponse
     {
+        $this->log('DELETE', "/api/items/$id");
         return $this->proxyDelete("/api/items/$id");
     }
 
@@ -100,5 +105,19 @@ final class ItemsProxyController extends AbstractController
             json_decode($response->getContent(false), true),
             $response->getStatusCode()
         );
+    }
+
+    private function log(string $status, string $content): void {
+        $logsUrl = rtrim($_ENV['LOGS_SERVICE_URL'], '/') . '/api/logs';
+
+        $this->httpClient->request('POST', $logsUrl, [
+            'json' => [
+                'status' => $status,
+                'content' => $content
+            ],
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
     }
 }
