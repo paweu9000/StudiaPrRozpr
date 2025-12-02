@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\DTO\UserDto;
 use App\Entity\AppUser;
-use App\Repository\AppUserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

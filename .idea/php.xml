@@ -396,6 +396,7 @@
       <path value="$PROJECT_DIR$/items/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/items/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/items/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/gate/vendor/nelmio/cors-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
@@ -409,8 +410,7 @@
   </component>
   <component name="PhpUnit">
     <phpunit_settings>
-      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/auth/vendor/autoload.php" />
-      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/gateway/vendor/autoload.php" />
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/gate/vendor/autoload.php" />
     </phpunit_settings>
   </component>
   <component name="Psalm">

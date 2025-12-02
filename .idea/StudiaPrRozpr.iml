@@ -326,6 +326,7 @@
       <excludeFolder url="file://$MODULE_DIR$/items/vendor/symfony/var-dumper" />
       <excludeFolder url="file://$MODULE_DIR$/items/vendor/symfony/var-exporter" />
       <excludeFolder url="file://$MODULE_DIR$/items/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/gate/vendor/nelmio/cors-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
