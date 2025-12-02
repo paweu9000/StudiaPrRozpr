@@ -23,14 +23,24 @@ export default function Navbar() {
                         </Typography>
                     </NavLink>
                     {cookies.token ? (
-                        <Button
-                            color="inherit"
-                            variant="outlined"
-                            onClick={handleLogout}
-                            sx={{ marginLeft: 2 }}
-                        >
-                            Wyloguj się
-                        </Button>
+                        <>
+                            <Button
+                                color="inherit"
+                                variant="outlined"
+                                onClick={handleLogout}
+                                sx={{ marginLeft: 2, marginRight: 2 }}
+                            >
+                                Wyloguj się
+                            </Button>
+                            <NavLink to="/items">
+                                <Button
+                                    color="inherit"
+                                    variant="outlined"
+                                >
+                                    Przedmioty
+                                </Button>
+                            </NavLink>
+                        </>
                     ) : (
                         <>
                             <NavLink to="/login">
