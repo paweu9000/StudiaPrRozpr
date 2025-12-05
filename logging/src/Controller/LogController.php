@@ -15,6 +15,7 @@ final class LogController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
+        private readonly LogRepository $logRepository
     ) {
     }
 
@@ -39,5 +40,20 @@ final class LogController extends AbstractController
         return $this->json([
             'status' => 'Created'
         ], 201);
+    }
+
+    #[Route('/api/logs', methods: ['GET', 'HEAD'])]
+    public function list(): JsonResponse
+    {
+        $logs = $this->logRepository->findAll();
+
+        $formatted = array_map(fn($log) => [
+            'id' => $log->getId(),
+            'content' => $log->getContent(),
+            'status' => $log->getStatus(),
+            'timestamp' => $log->getTimestamp()->format('Y-m-d H:i:s'),
+        ], $logs);
+
+        return $this->json($formatted);
     }
 }

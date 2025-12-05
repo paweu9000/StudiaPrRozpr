@@ -38,3 +38,8 @@ item_delete:
     path: /api/items/{id}
     controller: App\Controller\ItemsProxyController::delete
     methods: [DELETE]
+
+logs_list:
+    path: /api/logs
+    controller: App\Controller\LogsController::list
+    methods: [GET]

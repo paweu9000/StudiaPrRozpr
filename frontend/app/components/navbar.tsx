@@ -36,8 +36,18 @@ export default function Navbar() {
                                 <Button
                                     color="inherit"
                                     variant="outlined"
+                                    sx={{ marginLeft: 2, marginRight: 2 }}
                                 >
                                     Przedmioty
+                                </Button>
+                            </NavLink>
+                            <NavLink to="/logs">
+                                <Button
+                                    color="inherit"
+                                    variant="outlined"
+                                    sx={{ marginLeft: 2, marginRight: 2 }}
+                                >
+                                    Logi
                                 </Button>
                             </NavLink>
                         </>
